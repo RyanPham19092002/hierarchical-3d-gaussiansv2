@@ -11,12 +11,14 @@
 
 import torch
 import math
-from diff_gaussian_rasterization import GaussianRasterizationSettings, GaussianRasterizer
+test = torch.tensor([1.0]).cuda()
+print("Is the tensor on GPU?", test.is_cuda)
+print("--------------------gs_render/__init__----------------------")
 from scene.gaussian_model import GaussianModel
 from utils.sh_utils import eval_sh
 from diff_gaussian_rasterization import _C
 import numpy as np
-
+from diff_gaussian_rasterization import GaussianRasterizationSettings, GaussianRasterizer
 def render(
         viewpoint_camera, pc : GaussianModel, pipe, bg_color : torch.Tensor, scaling_modifier = 1.0, override_color = None, indices = None, use_trained_exp=False):
     """
