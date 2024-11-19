@@ -4,7 +4,10 @@ import argparse
 import time
 import platform
 from pathlib import Path
-
+import torch
+test = torch.tensor([1.0]).cuda()
+print("Is the tensor on GPU?", test.is_cuda)
+print("-------full train-----------")
 def submit_job(slurm_args):
     """Submit a job using sbatch and return the job ID."""    
     try:
@@ -45,7 +48,7 @@ def setup_dirs(images, depths, masks, colmap, chunks, output, project):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--project_dir', required=True, help="Only the project dir has to be specified, other directories will be set according to the ones created using generate_colmap and generate_chunks scripts. They still can be explicitly specified.")
-    parser.add_argument('--env_name', default="hierarchical_3d_gaussians")
+    parser.add_argument('--env_name', default="hierarchical_3d_gaussiansv1")
     parser.add_argument('--extra_training_args', default="", help="Additional arguments that can be passed to training scripts. Not passed to slurm yet")
     parser.add_argument('--colmap_dir', default="")
     parser.add_argument('--images_dir', default="")
@@ -59,7 +62,7 @@ if __name__ == '__main__':
     parser.add_argument('--keep_running', action="store_true", default=False, help="Keep running even if a chunk processing fails")
     args = parser.parse_args()
     print(args.extra_training_args)
-
+    print("args.output_dir", args.output_dir)
     os_name = platform.system()
     f_path = Path(__file__)
     images_dir, depths_dir, masks_dir, colmap_dir, chunks_dir, output_dir = setup_dirs(
