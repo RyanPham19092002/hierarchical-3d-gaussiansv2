@@ -11,6 +11,14 @@
 
 import os
 import torch
+os.environ["TORCH_CUDA_ARCH_LIST"] = "3.7+PTX;5.0;6.0;6.1;6.2;7.0;7.5"
+print(torch.__version__)
+print(torch.version.cuda)
+print(torch.cuda.is_available())
+print(torch.cuda.get_device_name(0))
+test = torch.tensor([1.0]).cuda()
+print("Is the tensor on GPU?", test.is_cuda)
+print("-------------train coarse----------------------------------------------")
 from utils.loss_utils import l1_loss, ssim
 from gaussian_renderer import render_coarse, network_gui
 import sys
