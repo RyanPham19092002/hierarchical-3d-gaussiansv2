@@ -11,10 +11,19 @@
 
 import json
 import torch
+import os
+# os.environ["TORCH_CUDA_ARCH_LIST"] = "3.7+PTX;5.0;6.0;6.1;6.2;7.0;7.5"
+print(torch.__version__)
+print(torch.version.cuda)
+print(torch.cuda.is_available())
+print(torch.cuda.get_device_name(0))
+
+# test = torch.tensor([1.0]).cuda()
+# print("Is the tensor on GPU?", test.is_cuda)
+print("-----------------gs_model---------------------")
 import numpy as np
 from utils.general_utils import inverse_sigmoid, get_expon_lr_func, build_rotation
 from torch import nn
-import os
 from utils.system_utils import mkdir_p
 from plyfile import PlyData, PlyElement
 from utils.sh_utils import RGB2SH
@@ -152,11 +161,31 @@ class GaussianModel:
             scaffold_file: str,
             bounds_file: str,
             skybox_locked: bool):
-        
-        self.spatial_lr_scale = spatial_lr_scale
+        # print(torch.__version__)
+        # print(torch.version.cuda)
+        # print(torch.cuda.is_available())
+        # print(torch.cuda.get_device_name(0))
 
+        # test = torch.tensor([1.0]).cuda()
+        # # print("Is the tensor on GPU?", test.is_cuda)
+        # print("-----------------gs_model---------------------")
+        # device = torch.cuda.get_device_properties(0)
+        # print(f"Compute Capability: {device.major}.{device.minor}")
+        self.spatial_lr_scale = spatial_lr_scale
+        # test = torch.tensor([1.0]).to(device)
+        # print("Is the tensor on GPU?", test.is_cuda)
+        # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        # print("device", device)
+        # xyz = torch.tensor(np.asarray(pcd.points), device="cuda").float()
+        # fused_color = torch.tensor(np.asarray(pcd.colors)).float()
+        # print("xyz", xyz)
+        # print("fused_color", fused_color)
+        # xyz = xyz.to(device)
+        # fused_color = fused_color.to(device)
         xyz = torch.tensor(np.asarray(pcd.points)).float().cuda()
         fused_color = torch.tensor(np.asarray(pcd.colors)).float().cuda()
+        # xyz = torch.tensor(np.asarray(pcd.points)).float().to(device)
+        # fused_color = torch.tensor(np.asarray(pcd.colors)).float().to(device)
         
         minimum,_ = torch.min(xyz, axis=0)
         maximum,_ = torch.max(xyz, axis=0)

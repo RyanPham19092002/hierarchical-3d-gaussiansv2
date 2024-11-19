@@ -12,6 +12,21 @@
 import os
 import random
 import json
+import torch
+print("TORCH_CUDA_ARCH_LIST:", os.getenv("TORCH_CUDA_ARCH_LIST"))
+# os.environ.pop("TORCH_CUDA_ARCH_LIST", None)
+# print("TORCH_CUDA_ARCH_LIST:", os.getenv("TORCH_CUDA_ARCH_LIST"))
+print("PyTorch version:", torch.__version__)
+print("CUDA version:", torch.version.cuda)
+print("CUDA available:", torch.cuda.is_available())
+print("Device name:", torch.cuda.get_device_name(0))
+
+# Chuyển tensor lên GPU
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print("device", device)
+tensor = torch.tensor([1.0]).to(device)
+print("Tensor on GPU:", tensor.is_cuda)
+print("--------------------scene/__init__----------------------")
 from utils.system_utils import searchForMaxIteration
 from scene.dataset_readers import sceneLoadTypeCallbacks
 from scene.gaussian_model import GaussianModel
