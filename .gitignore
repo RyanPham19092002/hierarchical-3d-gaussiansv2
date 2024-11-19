@@ -4,3 +4,14 @@ output
 build
 tensorboard_3d
 screenshots
+data/
+data_nuscene/
+colmap/
+dataset/
+nuscene/
+nuscene_inpainting/
+SIBR_viewers/
+data.zip/
+example_dataset.zip/
+SIBR_viewers.zip/
+0_0
