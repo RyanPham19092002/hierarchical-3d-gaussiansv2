@@ -582,4 +582,4 @@ Packages: Please follow **"environment.yml"**
 
 Training : run **"sh full_train.sh"**
 
-
+Data path : **"data/example_dataset"**
