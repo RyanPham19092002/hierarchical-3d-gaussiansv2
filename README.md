@@ -573,3 +573,13 @@ python render_hierarchy.py -s ${DATASET_DIR} --model_path ${DATASET_DIR}/output 
 
 ### Exposure optimization
 We generally disable exposure optimization for evaluations. If you want to use it, you can optimize exposure on the left half of the test image and evaluate on their right half. To achieve this, remove `--exposure_lr_init 0.0` from the commands above and add `--train_test_exp` to all training scripts.
+
+
+
+## Note
+
+Packages: Please follow **"environment.yml"** 
+
+Training : run **"sh full_train.sh"**
+
+
