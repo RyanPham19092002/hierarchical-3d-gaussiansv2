@@ -578,8 +578,8 @@ We generally disable exposure optimization for evaluations. If you want to use i
 
 ## Note
 
-Packages: Please follow **"environment.yml"** 
+Packages: Please follow **"/home/vinai/Workspace/phat-intern-dev/VinAI/hierarchical-3d-gaussians/environment.yml"** 
 
-Training : run **"sh full_train.sh"**
+Training : run **"sh /home/vinai/Workspace/phat-intern-dev/VinAI/hierarchical-3d-gaussians/full_train.sh"**
 
-Data path : **"data/example_dataset"**
+Data path : **"/home/vinai/Workspace/phat-intern-dev/VinAI/hierarchical-3d-gaussians/data/example_dataset"**
